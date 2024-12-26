@@ -1,5 +1,5 @@
-/// Reverse vowels in string
-/// https://leetcode.com/problems/reverse-vowels-of-a-string
+//! Reverse vowels in string
+//! https://leetcode.com/problems/reverse-vowels-of-a-string
 use std::collections::HashSet;
 
 struct Solution {}
@@ -19,9 +19,7 @@ impl Solution {
         let mut vowels: Vec<char> = Vec::with_capacity(s.len() / 3);
 
         let mut result: Vec<char> = Vec::with_capacity(s.len());
-        unsafe {
-            result.set_len(s.len());
-        }
+        result.resize_with(s.len(), Default::default);
 
         for (i, char) in s.chars().enumerate() {
             if known_vowels.contains(&char) {

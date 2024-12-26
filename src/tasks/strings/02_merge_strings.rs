@@ -1,14 +1,14 @@
-/// Merge Strings Alternately
-/// https://leetcode.com/problems/merge-strings-alternately
+//! Merge Strings Alternately
+//! https://leetcode.com/problems/merge-strings-alternately
 pub struct Solution {}
 
 impl Solution {
     pub fn merge_alternately(word1: String, word2: String) -> String {
-        if (word1.len() < 1) {
+        if (word1.is_empty()) {
             return word2;
         }
 
-        if (word2.len() < 1) {
+        if (word2.is_empty()) {
             return word1;
         }
 

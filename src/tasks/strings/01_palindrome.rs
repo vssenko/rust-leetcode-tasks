@@ -1,5 +1,5 @@
-/// Longest Palindromic Substring
-/// https://leetcode.com/problems/longest-palindromic-substring/
+//! Longest Palindromic Substring
+//! https://leetcode.com/problems/longest-palindromic-substring/
 
 pub struct Solution {}
 
@@ -13,8 +13,8 @@ impl Solution {
 
         while left > 0 && right < last {
             if *arr.get_unchecked(left - 1) == *arr.get_unchecked(right + 1) {
-                left = left - 1;
-                right = right + 1;
+                left -= 1;
+                right += 1;
             } else {
                 break;
             }
@@ -24,7 +24,7 @@ impl Solution {
     }
 
     pub fn longest_palindrome(s: String) -> String {
-        if s.len() < 1 {
+        if s.is_empty() {
             return "".into();
         }
         let s_chars = s.chars().collect::<Vec<_>>();

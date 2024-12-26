@@ -1,5 +1,5 @@
-/// Kids with greatest number of candies.
-/// https://leetcode.com/problems/kids-with-the-greatest-number-of-candies
+//! Kids with greatest number of candies.
+//! https://leetcode.com/problems/kids-with-the-greatest-number-of-candies
 
 struct Solution {}
 

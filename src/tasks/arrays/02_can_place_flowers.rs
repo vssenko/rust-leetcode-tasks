@@ -1,5 +1,5 @@
-/// Can place flowers
-/// https://leetcode.com/problems/can-place-flowers
+//! Can place flowers
+//! https://leetcode.com/problems/can-place-flowers
 struct Solution {}
 
 impl Solution {
@@ -47,7 +47,7 @@ mod tests {
 
         let result = Solution::can_place_flowers(flowerbed, n);
 
-        assert_eq!(result, true);
+        assert!(result);
     }
 
     #[test]
@@ -57,6 +57,6 @@ mod tests {
 
         let result = Solution::can_place_flowers(flowerbed, n);
 
-        assert_eq!(result, false);
+        assert!(!result);
     }
 }

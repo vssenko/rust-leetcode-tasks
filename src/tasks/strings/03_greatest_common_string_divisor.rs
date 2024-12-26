@@ -1,5 +1,5 @@
-/// Greates common divisor of strings
-/// https://leetcode.com/problems/greatest-common-divisor-of-strings
+//! Greates common divisor of strings
+//! https://leetcode.com/problems/greatest-common-divisor-of-strings
 
 struct Solution {}
 
@@ -34,17 +34,17 @@ impl Solution {
     }
 
     pub fn gcd_of_strings(str1: String, str2: String) -> String {
-        if (str1.len() < 1 || str2.len() < 1) {
+        if (str1.is_empty() || str2.is_empty()) {
             return "".into();
         }
 
         let mut pattern = Self::get_max_pattern(str1.as_str(), str2.as_str());
 
-        if pattern.len() == 0 {
+        if pattern.is_empty() {
             return "".into();
         }
 
-        while pattern.len() > 0 {
+        while !pattern.is_empty() {
             let first_ok = Self::check_pattern(str1.as_str(), pattern.as_str());
             let second_ok = Self::check_pattern(str2.as_str(), pattern.as_str());
 
@@ -55,7 +55,7 @@ impl Solution {
             pattern.pop();
         }
 
-        return "".into();
+        "".into()
     }
 }
 
