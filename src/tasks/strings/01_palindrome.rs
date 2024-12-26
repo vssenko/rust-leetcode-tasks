@@ -23,7 +23,6 @@ impl Solution {
         right - left + 1
     }
 
-    #[allow(unused)]
     pub fn longest_palindrome(s: String) -> String {
         if s.len() < 1 {
             return "".into();

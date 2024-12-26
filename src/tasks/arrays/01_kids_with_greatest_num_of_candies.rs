@@ -4,7 +4,6 @@
 struct Solution {}
 
 impl Solution {
-    #[allow(unused)]
     pub fn kids_with_candies(candies: Vec<i32>, extra_candies: i32) -> Vec<bool> {
         let max_val = *candies.iter().max().unwrap();
 

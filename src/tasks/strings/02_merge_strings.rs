@@ -3,7 +3,6 @@
 pub struct Solution {}
 
 impl Solution {
-    #[allow(unused)]
     pub fn merge_alternately(word1: String, word2: String) -> String {
         if (word1.len() < 1) {
             return word2;

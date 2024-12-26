@@ -1,12 +1,10 @@
-use std::collections::HashSet;
-
 /// Reverse vowels in string
 /// https://leetcode.com/problems/reverse-vowels-of-a-string
+use std::collections::HashSet;
 
 struct Solution {}
 
 impl Solution {
-    #[allow(unused)]
     pub fn reverse_vowels(s: String) -> String {
         if s.len() < 2 {
             return s;

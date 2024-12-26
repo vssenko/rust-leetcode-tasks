@@ -3,7 +3,6 @@
 struct Solution {}
 
 impl Solution {
-    #[allow(unused)]
     pub fn can_place_flowers(mut flowerbed: Vec<i32>, n: i32) -> bool {
         if n == 0 {
             return true;

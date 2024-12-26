@@ -9,3 +9,6 @@ mod gcsd;
 
 #[path = "04_reverse_vowels.rs"]
 mod reverse_vowels;
+
+#[path = "05_reverse_words.rs"]
+mod reverse_words;
