@@ -6,3 +6,6 @@ mod can_place_flowers;
 
 #[path = "03_product_of_array.rs"]
 mod product_of_array;
+
+#[path = "04_increasing_triplet_subsequence.rs"]
+mod increasing_triplet_subsequence;
