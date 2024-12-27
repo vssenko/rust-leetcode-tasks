@@ -12,3 +12,6 @@ mod reverse_vowels;
 
 #[path = "05_reverse_words.rs"]
 mod reverse_words;
+
+#[path = "06_string_compression.rs"]
+mod string_compression;
