@@ -1,3 +1,6 @@
+//! Check if s is subsequence of t
+//! https://leetcode.com/problems/is-subsequence
+
 struct Solution;
 
 impl Solution {
