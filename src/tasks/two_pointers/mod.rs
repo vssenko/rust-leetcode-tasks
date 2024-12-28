@@ -6,3 +6,6 @@ mod subsequence;
 
 #[path = "03_container_with_the_most_water.rs"]
 mod container_with_the_most_water;
+
+#[path = "04_max_num_of_k_pairs.rs"]
+mod max_num_of_k_pairs;
