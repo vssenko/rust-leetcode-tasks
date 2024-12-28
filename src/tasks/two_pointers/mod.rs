@@ -9,3 +9,6 @@ mod container_with_the_most_water;
 
 #[path = "04_max_num_of_k_pairs.rs"]
 mod max_num_of_k_pairs;
+
+#[path = "05_max_conseq_ones.rs"]
+mod max_conseq_ones;
