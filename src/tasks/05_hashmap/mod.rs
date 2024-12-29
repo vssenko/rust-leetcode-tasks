@@ -3,3 +3,6 @@ mod find_arr_diff;
 
 #[path = "02_unique_num_occur.rs"]
 mod unique_num_occur;
+
+#[path = "03_check_strings_close.rs"]
+mod check_strings_close;
