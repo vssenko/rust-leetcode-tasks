@@ -15,3 +15,6 @@ mod two_pointers;
 
 #[path = "05_hashmap/mod.rs"]
 mod hashmap;
+
+#[path = "06_stack/mod.rs"]
+mod stack;

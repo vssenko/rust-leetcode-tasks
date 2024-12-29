@@ -24,6 +24,8 @@ impl Solution {
     pub fn equal_pairs(grid: Vec<Vec<i32>>) -> i32 {
         let square_len = grid.len();
 
+        // Solution could be a little faster by using single hashmap with tuple as rows/columns counter,
+        // but I like this explicit approach.
         let mut col_map: HashMap<String, usize> = HashMap::with_capacity(grid.len());
         let mut row_map: HashMap<String, usize> = HashMap::with_capacity(grid.len());
 
