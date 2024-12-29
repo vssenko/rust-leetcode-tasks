@@ -6,3 +6,6 @@ mod unique_num_occur;
 
 #[path = "03_check_strings_close.rs"]
 mod check_strings_close;
+
+#[path = "04_eq_row_col_pairs.rs"]
+mod eq_row_col_pairs;
