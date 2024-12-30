@@ -38,39 +38,45 @@ impl Solution {
 
     pub fn predict_party_victory(senate: String) -> String {
         let mut queue: VecDeque<char> = senate.chars().collect();
-
         loop {
-            let mut voted_queue = VecDeque::with_capacity(queue.len());
+            let mut new_queue = VecDeque::<char>::with_capacity(queue.len());
 
-            while queue.front().is_some() {
-                let senator = queue.pop_front().unwrap();
+            let mut r_to_remove = 0;
+            let mut d_to_remove = 0;
 
-                let mut found_to_remove = false;
-                for (i, next_senator) in queue.iter().enumerate() {
-                    if *next_senator != senator {
-                        queue.remove(i);
-                        found_to_remove = true;
-                        break;
-                    }
+            for senator in queue.iter() {
+                let (self_to_remove_counter, other_to_remove_counter) = if *senator == RADIANT {
+                    (&mut r_to_remove, &mut d_to_remove)
+                } else {
+                    (&mut d_to_remove, &mut r_to_remove)
+                };
+
+                if *self_to_remove_counter == 0 {
+                    new_queue.push_back(*senator);
+                    *other_to_remove_counter += 1
+                } else {
+                    *self_to_remove_counter -= 1;
                 }
-
-                if (!found_to_remove) {
-                    for (i, next_senator) in voted_queue.iter().enumerate() {
-                        if *next_senator != senator {
-                            voted_queue.remove(i);
-                            break;
-                        }
-                    }
-                }
-
-                voted_queue.push_back(senator);
             }
 
-            if Self::all_elements_same(voted_queue.iter()) {
-                return Self::get_label(&voted_queue[0]);
+            queue.clear();
+            for voted_senator in new_queue {
+                let (self_to_remove_counter) = if voted_senator == RADIANT {
+                    &mut r_to_remove
+                } else {
+                    &mut d_to_remove
+                };
+
+                if *self_to_remove_counter > 0 {
+                    *self_to_remove_counter -= 1;
+                } else {
+                    queue.push_back(voted_senator);
+                }
             }
 
-            queue = voted_queue;
+            if Self::all_elements_same(queue.iter()) {
+                return Self::get_label(&queue[0]);
+            }
         }
     }
 }
