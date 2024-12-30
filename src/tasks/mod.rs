@@ -18,3 +18,6 @@ mod hashmap;
 
 #[path = "06_stack/mod.rs"]
 mod stack;
+
+#[path = "07_queue/mod.rs"]
+mod queue;
