@@ -32,14 +32,14 @@ impl NodeManager {
     }
 
     fn push(&mut self, val: i32) {
-        let new_node = Box::new(ListNode { val, next: None });
-        let new_node_ptr: *mut ListNode = Box::into_raw(new_node);
+        let mut new_node = Box::new(ListNode { val, next: None });
+        let new_node_ptr = &mut *new_node as *mut ListNode;
         unsafe {
             if self.tail.is_null() {
-                self.head = Some(Box::from_raw(new_node_ptr));
+                self.head = Some(new_node);
                 self.tail = new_node_ptr;
             } else {
-                (*self.tail).next = Some(Box::from_raw(new_node_ptr));
+                (*self.tail).next = Some(new_node);
                 self.tail = new_node_ptr;
             }
         }
