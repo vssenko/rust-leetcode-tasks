@@ -8,3 +8,6 @@ mod odd_even_list;
 
 #[path = "03_reverse.rs"]
 mod reverse;
+
+#[path = "04_max_twins.rs"]
+mod max_twins;
