@@ -24,3 +24,6 @@ mod queue;
 
 #[path = "08_linked_list/mod.rs"]
 mod linked_list;
+
+#[path = "09_binary_tree/mod.rs"]
+mod binary_tree;
