@@ -21,3 +21,6 @@ mod stack;
 
 #[path = "07_queue/mod.rs"]
 mod queue;
+
+#[path = "08_linked_list/mod.rs"]
+mod linked_list;
