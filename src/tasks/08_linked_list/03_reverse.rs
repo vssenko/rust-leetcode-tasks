@@ -1,7 +1,7 @@
 //! Reverse linked list
 //! https://leetcode.com/problems/reverse-linked-list
 
-use super::leetcode_list::ListNode;
+use super::ListNode;
 
 struct Solution;
 

@@ -2,7 +2,7 @@
 //! You are given the head of a linked list. Delete the middle node, and return the head of the modified linked list.
 //! https://leetcode.com/problems/delete-the-middle-node-of-a-linked-list
 
-use super::leetcode_list::ListNode;
+use super::ListNode;
 
 struct Solution;
 

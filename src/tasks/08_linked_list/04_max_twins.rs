@@ -2,7 +2,7 @@
 //! In a linked list of size n, where n is even, the ith node (0-indexed) of the linked list is known as the twin of the (n-1-i)th node, if 0 <= i <= (n / 2) - 1.
 //! Given the head of a linked list with even length, return the maximum twin sum of the linked list.
 
-use super::leetcode_list::ListNode;
+use super::ListNode;
 
 struct Solution;
 

@@ -5,7 +5,7 @@
 
 use std::ptr;
 
-use super::leetcode_list::ListNode;
+use super::ListNode;
 
 struct Solution;
 
