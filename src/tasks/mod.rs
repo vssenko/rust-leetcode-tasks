@@ -27,3 +27,6 @@ mod linked_list;
 
 #[path = "09_binary_tree_dfs/mod.rs"]
 mod binary_tree_dfs;
+
+#[path = "10_binary_tree_bfs/mod.rs"]
+mod binary_tree_bfs;
