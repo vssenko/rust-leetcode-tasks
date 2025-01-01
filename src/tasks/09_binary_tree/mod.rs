@@ -8,3 +8,6 @@ mod leaf_similar;
 
 #[path = "03_count_good_nodes.rs"]
 mod count_good_nodes;
+
+#[path = "04_path_sum.rs"]
+mod _path_sum;
