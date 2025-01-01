@@ -58,45 +58,45 @@ mod tests {
             val: 3,
             left: TreeNode {
                 val: 5,
-                left: TreeNode::new(6).into_leaf(),
+                left: TreeNode::new(6).into_rc(),
                 right: TreeNode {
                     val: 2,
-                    left: TreeNode::new(7).into_leaf(),
-                    right: TreeNode::new(4).into_leaf(),
+                    left: TreeNode::new(7).into_rc(),
+                    right: TreeNode::new(4).into_rc(),
                 }
-                .into_leaf(),
+                .into_rc(),
             }
-            .into_leaf(),
+            .into_rc(),
             right: TreeNode {
                 val: 1,
-                left: TreeNode::new(9).into_leaf(),
-                right: TreeNode::new(8).into_leaf(),
+                left: TreeNode::new(9).into_rc(),
+                right: TreeNode::new(8).into_rc(),
             }
-            .into_leaf(),
+            .into_rc(),
         }
-        .into_leaf();
+        .into_rc();
 
         let tree_2 = TreeNode {
             val: 3,
             left: TreeNode {
                 val: 5,
-                left: TreeNode::new(6).into_leaf(),
-                right: TreeNode::new(7).into_leaf(),
+                left: TreeNode::new(6).into_rc(),
+                right: TreeNode::new(7).into_rc(),
             }
-            .into_leaf(),
+            .into_rc(),
             right: TreeNode {
                 val: 1,
-                left: TreeNode::new(4).into_leaf(),
+                left: TreeNode::new(4).into_rc(),
                 right: TreeNode {
                     val: 2,
-                    left: TreeNode::new(9).into_leaf(),
-                    right: TreeNode::new(8).into_leaf(),
+                    left: TreeNode::new(9).into_rc(),
+                    right: TreeNode::new(8).into_rc(),
                 }
-                .into_leaf(),
+                .into_rc(),
             }
-            .into_leaf(),
+            .into_rc(),
         }
-        .into_leaf();
+        .into_rc();
 
         let result = Solution::leaf_similar(tree_1, tree_2);
 

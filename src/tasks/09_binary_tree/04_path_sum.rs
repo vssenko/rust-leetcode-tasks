@@ -77,26 +77,26 @@ mod tests {
                 val: 5,
                 left: TreeNode {
                     val: 3,
-                    left: TreeNode::new(3).into_leaf(),
-                    right: TreeNode::new(-2).into_leaf(),
+                    left: TreeNode::new(3).into_rc(),
+                    right: TreeNode::new(-2).into_rc(),
                 }
-                .into_leaf(),
+                .into_rc(),
                 right: TreeNode {
                     val: 2,
                     left: None,
-                    right: TreeNode::new(1).into_leaf(),
+                    right: TreeNode::new(1).into_rc(),
                 }
-                .into_leaf(),
+                .into_rc(),
             }
-            .into_leaf(),
+            .into_rc(),
             right: TreeNode {
                 val: -3,
                 left: None,
-                right: TreeNode::new(11).into_leaf(),
+                right: TreeNode::new(11).into_rc(),
             }
-            .into_leaf(),
+            .into_rc(),
         }
-        .into_leaf();
+        .into_rc();
 
         let result = Solution::path_sum(tree, 8);
         assert_eq!(result, 3);
@@ -106,10 +106,10 @@ mod tests {
     fn path_sum_2() {
         let tree = TreeNode {
             val: 0,
-            left: TreeNode::new(1).into_leaf(),
-            right: TreeNode::new(1).into_leaf(),
+            left: TreeNode::new(1).into_rc(),
+            right: TreeNode::new(1).into_rc(),
         }
-        .into_leaf();
+        .into_rc();
 
         let result = Solution::path_sum(tree, 1);
         assert_eq!(result, 4);
@@ -123,16 +123,16 @@ mod tests {
                 val: 1000000000,
                 left: TreeNode {
                     val: 294967296,
-                    left: TreeNode::new(1000000000).into_leaf(),
+                    left: TreeNode::new(1000000000).into_rc(),
                     right: None,
                 }
-                .into_leaf(),
+                .into_rc(),
                 right: None,
             }
-            .into_leaf(),
+            .into_rc(),
             right: None,
         }
-        .into_leaf();
+        .into_rc();
 
         let result = Solution::path_sum(tree, 0);
         assert_eq!(result, 0);

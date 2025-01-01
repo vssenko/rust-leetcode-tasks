@@ -54,18 +54,18 @@ mod tests {
             val: 3,
             left: TreeNode {
                 val: 1,
-                left: TreeNode::new(3).into_leaf(),
+                left: TreeNode::new(3).into_rc(),
                 right: None,
             }
-            .into_leaf(),
+            .into_rc(),
             right: TreeNode {
                 val: 4,
-                left: TreeNode::new(1).into_leaf(),
-                right: TreeNode::new(5).into_leaf(),
+                left: TreeNode::new(1).into_rc(),
+                right: TreeNode::new(5).into_rc(),
             }
-            .into_leaf(),
+            .into_rc(),
         }
-        .into_leaf();
+        .into_rc();
 
         let result = Solution::good_nodes(tree);
         assert_eq!(result, 4);

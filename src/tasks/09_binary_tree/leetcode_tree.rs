@@ -18,7 +18,28 @@ impl TreeNode {
         }
     }
 
-    pub fn into_leaf(self) -> Option<Rc<RefCell<Self>>> {
+    pub fn into_rc(self) -> Option<Rc<RefCell<Self>>> {
         Some(Rc::new(RefCell::new(self)))
+    }
+}
+
+pub trait CopyToRc {
+    fn copy_to_rc(self, rcref: &mut Option<Rc<RefCell<TreeNode>>>) -> Self;
+}
+
+impl CopyToRc for Rc<RefCell<TreeNode>> {
+    fn copy_to_rc(self, rcref: &mut Option<Rc<RefCell<TreeNode>>>) -> Self {
+        *rcref = Some(self.clone());
+        self
+    }
+}
+
+impl CopyToRc for Option<Rc<RefCell<TreeNode>>> {
+    fn copy_to_rc(self, rcref: &mut Option<Rc<RefCell<TreeNode>>>) -> Self {
+        let Some(some_self) = self else {
+            return self;
+        };
+
+        Some(some_self.copy_to_rc(rcref))
     }
 }

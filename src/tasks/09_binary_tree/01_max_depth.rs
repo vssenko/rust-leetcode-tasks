@@ -35,16 +35,16 @@ mod tests {
     fn max_depth_1() {
         let tree = TreeNode {
             val: 3,
-            left: TreeNode::new(9).into_leaf(),
+            left: TreeNode::new(9).into_rc(),
             right: TreeNode {
                 val: 20,
-                left: TreeNode::new(15).into_leaf(),
-                right: TreeNode::new(7).into_leaf(),
+                left: TreeNode::new(15).into_rc(),
+                right: TreeNode::new(7).into_rc(),
             }
-            .into_leaf(),
+            .into_rc(),
         };
 
-        let result = Solution::max_depth(tree.into_leaf());
+        let result = Solution::max_depth(tree.into_rc());
 
         assert_eq!(result, 3);
     }
@@ -54,10 +54,10 @@ mod tests {
         let tree = TreeNode {
             val: 1,
             left: None,
-            right: TreeNode::new(2).into_leaf(),
+            right: TreeNode::new(2).into_rc(),
         };
 
-        let result = Solution::max_depth(tree.into_leaf());
+        let result = Solution::max_depth(tree.into_rc());
 
         assert_eq!(result, 2);
     }

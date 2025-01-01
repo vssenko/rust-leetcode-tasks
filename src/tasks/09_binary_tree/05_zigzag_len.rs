@@ -106,26 +106,26 @@ mod tests {
                 val: 5,
                 left: TreeNode {
                     val: 3,
-                    left: TreeNode::new(3).into_leaf(),
-                    right: TreeNode::new(-2).into_leaf(),
+                    left: TreeNode::new(3).into_rc(),
+                    right: TreeNode::new(-2).into_rc(),
                 }
-                .into_leaf(),
+                .into_rc(),
                 right: TreeNode {
                     val: 2,
                     left: None,
-                    right: TreeNode::new(1).into_leaf(),
+                    right: TreeNode::new(1).into_rc(),
                 }
-                .into_leaf(),
+                .into_rc(),
             }
-            .into_leaf(),
+            .into_rc(),
             right: TreeNode {
                 val: -3,
                 left: None,
-                right: TreeNode::new(11).into_leaf(),
+                right: TreeNode::new(11).into_rc(),
             }
-            .into_leaf(),
+            .into_rc(),
         }
-        .into_leaf();
+        .into_rc();
 
         let result = Solution::longest_zig_zag(tree);
         assert_eq!(result, 2);

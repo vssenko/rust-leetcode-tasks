@@ -16,3 +16,6 @@ mod path_sum;
 
 #[path = "05_zigzag_len.rs"]
 mod zigzag_len;
+
+#[path = "06_lowest_common_ancestor.rs"]
+mod lowest_common_ancestor;
