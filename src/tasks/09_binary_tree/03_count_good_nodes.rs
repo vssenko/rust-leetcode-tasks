@@ -7,7 +7,7 @@ use std::borrow::Borrow;
 use std::cell::RefCell;
 use std::rc::Rc;
 
-use super::leetcode_tree::TreeNode;
+use super::TreeNode;
 
 struct Solution;
 

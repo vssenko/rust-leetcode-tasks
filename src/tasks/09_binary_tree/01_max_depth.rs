@@ -4,7 +4,7 @@
 
 use std::{cell::RefCell, rc::Rc};
 
-use super::leetcode_tree::TreeNode;
+use super::TreeNode;
 
 struct Solution;
 

@@ -1,5 +1,7 @@
 mod leetcode_tree;
 
+pub use leetcode_tree::*;
+
 #[path = "01_max_depth.rs"]
 mod max_depth;
 
@@ -10,4 +12,7 @@ mod leaf_similar;
 mod count_good_nodes;
 
 #[path = "04_path_sum.rs"]
-mod _path_sum;
+mod path_sum;
+
+#[path = "05_zigzag_len.rs"]
+mod zigzag_len;
