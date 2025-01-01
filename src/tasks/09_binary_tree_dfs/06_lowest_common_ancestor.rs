@@ -93,9 +93,8 @@ impl Solution {
 mod tests {
     use std::{cell::RefCell, rc::Rc};
 
+    use super::super::{CopyToRc, TreeNode};
     use super::Solution;
-    use crate::tasks::binary_tree::{CopyToRc, TreeNode};
-
     #[test]
     fn lowest_common_ancestor_1() {
         let mut q: Option<Rc<RefCell<TreeNode>>> = None;

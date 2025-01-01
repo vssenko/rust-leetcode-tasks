@@ -44,9 +44,8 @@ impl Solution {
 
 #[cfg(test)]
 mod tests {
-    use crate::tasks::binary_tree::leetcode_tree::TreeNode;
-
     use super::Solution;
+    use super::TreeNode;
 
     #[test]
     fn good_nodes_1() {
