@@ -19,6 +19,7 @@ impl TreeNode {
     }
 
     /// Push new element and return Rc<RefCell<TreeNode>>
+    #[allow(clippy::needless_return)]
     pub fn push(&mut self, val: i32) -> Rc<RefCell<TreeNode>> {
         if val <= self.val {
             if let Some(leaf) = self.left.as_mut() {
