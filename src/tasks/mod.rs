@@ -33,3 +33,6 @@ mod binary_tree_bfs;
 
 #[path = "11_binary_search_tree/mod.rs"]
 mod binary_search_tree;
+
+#[path = "12_graph_dfs/mod.rs"]
+mod graph_dfs;
