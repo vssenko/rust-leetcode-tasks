@@ -30,3 +30,6 @@ mod binary_tree_dfs;
 
 #[path = "10_binary_tree_bfs/mod.rs"]
 mod binary_tree_bfs;
+
+#[path = "11_binary_search_tree/mod.rs"]
+mod binary_search_tree;
