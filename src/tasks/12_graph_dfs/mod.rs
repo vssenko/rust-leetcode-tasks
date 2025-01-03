@@ -6,3 +6,6 @@ mod num_of_provinces;
 
 #[path = "03_reorder_routes.rs"]
 mod reorder_routes;
+
+#[path = "04_evaluate_division.rs"]
+mod evaluate_division;
