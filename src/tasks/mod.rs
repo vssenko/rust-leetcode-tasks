@@ -39,3 +39,6 @@ mod graph_dfs;
 
 #[path = "13_graph_bfs/mod.rs"]
 mod graph_bfs;
+
+#[path = "14_heap_queue/mod.rs"]
+mod heap_queue;
