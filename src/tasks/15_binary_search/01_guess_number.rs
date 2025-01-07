@@ -9,12 +9,14 @@
 //! Return the number that I picked.
 //! https://leetcode.com/problems/guess-number-higher-or-lower
 
-use std::sync::OnceLock;
+use std::sync::{Mutex, OnceLock};
 
 // Comment this section to submit to LeetCode.
-static PICKED_NUMBER: OnceLock<i32> = OnceLock::new();
+static TEST_MUTEX: Mutex<()> = Mutex::new(());
+static mut PICKED_NUMBER: i32 = 0;
+#[allow(static_mut_refs)]
 unsafe fn guess(num: i32) -> i32 {
-    match num.cmp(PICKED_NUMBER.get().unwrap()) {
+    match num.cmp(&PICKED_NUMBER) {
         std::cmp::Ordering::Less => Solution::NUM_IS_LOWER,
         std::cmp::Ordering::Equal => Solution::NUM_IS_EQUAL,
         std::cmp::Ordering::Greater => Solution::NUM_IS_GREATER,
@@ -67,7 +69,10 @@ mod tests {
 
     #[test]
     fn guess_number_1() {
-        super::PICKED_NUMBER.set(42);
+        let _guard = super::TEST_MUTEX.lock().unwrap();
+        unsafe {
+            super::PICKED_NUMBER = 42;
+        };
 
         let result = unsafe { Solution::guessNumber(128) };
 
@@ -76,7 +81,10 @@ mod tests {
 
     #[test]
     fn guess_number_2() {
-        super::PICKED_NUMBER.set(43);
+        let _guard = super::TEST_MUTEX.lock().unwrap();
+        unsafe {
+            super::PICKED_NUMBER = 43;
+        }
 
         let result = unsafe { Solution::guessNumber(128) };
 
@@ -85,7 +93,8 @@ mod tests {
 
     #[test]
     fn guess_number_3() {
-        super::PICKED_NUMBER.set(1);
+        let _guard = super::TEST_MUTEX.lock().unwrap();
+        unsafe { super::PICKED_NUMBER = 1 }
 
         let result = unsafe { Solution::guessNumber(1) };
 
@@ -94,7 +103,8 @@ mod tests {
 
     #[test]
     fn guess_number_4() {
-        super::PICKED_NUMBER.set(1702766719);
+        let _guard = super::TEST_MUTEX.lock().unwrap();
+        unsafe { super::PICKED_NUMBER = 1702766719 };
 
         let result = unsafe { Solution::guessNumber(2126753390) };
 
