@@ -42,3 +42,6 @@ mod graph_bfs;
 
 #[path = "14_heap_queue/mod.rs"]
 mod heap_queue;
+
+#[path = "15_binary_search/mod.rs"]
+mod binary_search;
