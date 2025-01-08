@@ -45,3 +45,6 @@ mod heap_queue;
 
 #[path = "15_binary_search/mod.rs"]
 mod binary_search;
+
+#[path = "16_backtracking/mod.rs"]
+mod backtracking;
