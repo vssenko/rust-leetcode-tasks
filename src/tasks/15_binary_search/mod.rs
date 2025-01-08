@@ -6,3 +6,6 @@ mod spells_and_potions;
 
 #[path = "03_find_peak.rs"]
 mod find_peak;
+
+#[path = "04_koko_and_bananas.rs"]
+mod koko_and_bananas;
