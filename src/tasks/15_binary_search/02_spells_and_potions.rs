@@ -39,17 +39,20 @@ impl Solution {
         left
     }
 
-    pub fn successful_pairs(spells: Vec<i32>, mut potions: Vec<i32>, success: i64) -> Vec<i32> {
-        potions.sort_unstable_by(|a, b| b.partial_cmp(a).unwrap());
+    pub fn successful_pairs(spells: Vec<i32>, potions: Vec<i32>, success: i64) -> Vec<i32> {
+        let mut prepared_potions: Vec<f64> = potions.into_iter().map(|n| n as f64).collect();
+        prepared_potions.sort_unstable_by(|a, b| b.partial_cmp(a).unwrap());
+
+        // potion * spell >= success
+        // spell >= success / potion
 
         spells
             .into_iter()
             .map(|spell_str| {
-                let scaled_potions: Vec<i64> = potions
-                    .iter()
-                    .map(|p| *p as i64 * spell_str as i64)
-                    .collect();
-                Self::count_greater_in_sorted_array(&scaled_potions, success) as i32
+                Self::count_greater_in_sorted_array(
+                    &prepared_potions,
+                    success as f64 / spell_str as f64,
+                ) as i32
             })
             .collect()
     }
