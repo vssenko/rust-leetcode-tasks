@@ -51,3 +51,6 @@ mod backtracking;
 
 #[path = "17_dp_d1/mod.rs"]
 mod dp_d1;
+
+#[path = "18_dp_multidimensional/mod.rs"]
+mod dp_multidimensional;
