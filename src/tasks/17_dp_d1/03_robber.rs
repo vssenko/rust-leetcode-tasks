@@ -7,12 +7,19 @@
 //! return the maximum amount of money you can rob tonight without alerting the police.
 //! https://leetcode.com/problems/house-robber
 
-//! This implementation exceed time limit.
-//! TODO: Finish.
+use std::{collections::VecDeque, iter::Sum};
 
 struct Solution;
 
+#[derive(Debug)]
+struct SummarizedChoices {
+    skipped_sum: i32,
+    robbed_sum: i32,
+}
+
 impl Solution {
+    #[allow(unused)]
+    /// Not used simple and ineffective recursive solution.
     fn find_max_sum(nums: &Vec<i32>) -> i32 {
         fn _find_max_sum(nums: &Vec<i32>, i: usize, current_sum: i32) -> i32 {
             if i >= nums.len() {
@@ -39,7 +46,40 @@ impl Solution {
             _ => {}
         };
 
-        Self::find_max_sum(&nums)
+        // 5 10 3 1
+
+        let mut last_choices: VecDeque<SummarizedChoices> = VecDeque::new();
+
+        last_choices.push_back(SummarizedChoices {
+            robbed_sum: nums[0],
+            skipped_sum: 0,
+        });
+        last_choices.push_back(SummarizedChoices {
+            robbed_sum: nums[1],
+            skipped_sum: nums[0],
+        });
+
+        for rob_value in nums.into_iter().skip(2) {
+            let prev_prev_choice = last_choices.pop_front().unwrap();
+            let prev_choice = last_choices.back().unwrap();
+
+            println!("Checking house with money {rob_value}");
+            println!("Prev-prev choice: {:?}", prev_prev_choice);
+            println!("Prev choice: {:?}", prev_choice);
+
+            let current_choice = SummarizedChoices {
+                robbed_sum: rob_value + prev_choice.skipped_sum,
+                skipped_sum: prev_choice.robbed_sum.max(prev_prev_choice.robbed_sum),
+            };
+
+            println!("Current choice: {:?}", current_choice);
+
+            last_choices.push_back(current_choice);
+        }
+
+        let last_choice = last_choices.back().unwrap();
+
+        last_choice.robbed_sum.max(last_choice.skipped_sum)
     }
 }
 
