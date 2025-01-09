@@ -63,16 +63,10 @@ impl Solution {
             let prev_prev_choice = last_choices.pop_front().unwrap();
             let prev_choice = last_choices.back().unwrap();
 
-            println!("Checking house with money {rob_value}");
-            println!("Prev-prev choice: {:?}", prev_prev_choice);
-            println!("Prev choice: {:?}", prev_choice);
-
             let current_choice = SummarizedChoices {
                 robbed_sum: rob_value + prev_choice.skipped_sum,
                 skipped_sum: prev_choice.robbed_sum.max(prev_prev_choice.robbed_sum),
             };
-
-            println!("Current choice: {:?}", current_choice);
 
             last_choices.push_back(current_choice);
         }
