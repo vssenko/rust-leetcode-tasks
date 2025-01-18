@@ -9,3 +9,5 @@ mod check_strings_close;
 
 #[path = "04_eq_row_col_pairs.rs"]
 mod eq_row_col_pairs;
+
+mod xx_history_map;
