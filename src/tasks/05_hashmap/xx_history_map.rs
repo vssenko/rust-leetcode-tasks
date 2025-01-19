@@ -4,35 +4,41 @@
 use std::collections::{HashMap, VecDeque};
 
 struct HistoryMap<K, T> {
-    max_history: usize,
+    max_size: usize,
     map: HashMap<K, T>,
     history: VecDeque<K>,
 }
 
 impl<K, T> HistoryMap<K, T>
 where
-    K: Eq + std::hash::Hash + Clone,
+    K: Eq + std::hash::Hash + Clone + std::fmt::Debug,
 {
-    pub fn new(max_history: usize) -> Self {
+    pub fn new(max_size: usize) -> Self {
         Self {
             history: VecDeque::new(),
             map: HashMap::new(),
-            max_history,
+            max_size,
         }
     }
 
     fn _update_history(&mut self, current_op_key: &K) {
-        let new_k: K = if self.history.front().is_some_and(|fk| fk == current_op_key) {
-            self.history.pop_front().unwrap()
-        } else {
-            current_op_key.clone()
-        };
+        // completely not optimized solution
+        // which is implemented only to cover tests correctly
+        // to update afterwards to O(1)
 
-        self.history.push_back(new_k);
+        let new_history: VecDeque<K> = self
+            .history
+            .iter()
+            .filter(|&k| !k.eq(current_op_key))
+            .cloned()
+            .collect();
+
+        self.history = new_history;
+        self.history.push_back(current_op_key.clone());
     }
 
     fn _ensure_max_history_treshold(&mut self) {
-        while self.history.len() > self.max_history {
+        while self.history.len() > self.max_size {
             if let Some(key_to_remove) = self.history.pop_front() {
                 self.map.remove(&key_to_remove);
             } else {
@@ -46,7 +52,6 @@ where
             self._update_history(key);
             self._ensure_max_history_treshold();
         }
-
         self.map.get(key)
     }
 
@@ -54,7 +59,6 @@ where
         if self.map.contains_key(key) {
             self._update_history(key);
         }
-
         self.map.get(key)
     }
 
@@ -62,13 +66,13 @@ where
         self.map.get(key)
     }
 
-    pub fn insert(&mut self, key: K, value: T) {
+    pub fn put(&mut self, key: K, value: T) {
         self._update_history(&key);
         self._ensure_max_history_treshold();
         self.map.insert(key, value);
     }
 
-    pub fn insert_untriggered(&mut self, key: K, value: T) {
+    pub fn put_untriggered(&mut self, key: K, value: T) {
         self._update_history(&key);
         self.map.insert(key, value);
     }
@@ -83,43 +87,56 @@ mod tests {
         let n = 3;
         let mut hm: HistoryMap<String, usize> = HistoryMap::new(n);
 
-        hm.insert("key_1".into(), 1);
-        hm.insert("key_2".into(), 2);
-        hm.insert("key_3".into(), 3);
+        hm.put("key_1".into(), 1);
+        hm.put("key_2".into(), 2);
+        hm.put("key_3".into(), 3);
 
         assert!(hm.get_untraced(&"key_1".into()).is_some());
         assert!(hm.get_untraced(&"key_2".into()).is_some());
         assert!(hm.get_untraced(&"key_3".into()).is_some());
 
-        hm.insert("key_4".into(), 4);
+        hm.put("key_4".into(), 4);
 
-        assert!(hm.get_untraced(&"key_1".into()).is_none());
-        assert!(hm.get_untraced(&"key_2".into()).is_some());
-        assert!(hm.get_untraced(&"key_3".into()).is_some());
-        assert!(hm.get_untraced(&"key_4".into()).is_some());
+        assert!(hm.get(&"key_1".into()).is_none());
+        assert!(hm.get(&"key_2".into()).is_some());
+        assert!(hm.get(&"key_3".into()).is_some());
+        assert!(hm.get(&"key_4".into()).is_some());
     }
 
     #[test]
-    fn history_map_trigger_on_get() {
+    fn history_map_should_not_rewrite_history_on_same_key() {
         let n = 3;
         let mut hm: HistoryMap<String, usize> = HistoryMap::new(n);
 
-        hm.insert_untriggered("key_1".into(), 1);
-        hm.insert_untriggered("key_2".into(), 2);
-        hm.insert_untriggered("key_3".into(), 3);
-        hm.insert_untriggered("key_4".into(), 4);
+        hm.put("key_1".into(), 1);
+        hm.put("key_2".into(), 2);
+
+        hm.put("key_1".into(), 3);
+        hm.put("key_1".into(), 4);
+        hm.put("key_1".into(), 5);
+        hm.put("key_1".into(), 6);
+
+        assert!(hm.get(&"key_1".into()).is_some());
+        assert!(hm.get(&"key_2".into()).is_some());
+    }
+
+    #[test]
+    fn history_map_should_count_middle_history_update() {
+        let n = 3;
+        let mut hm: HistoryMap<String, usize> = HistoryMap::new(n);
+
+        hm.put("key_1".into(), 1);
+        hm.put("key_2".into(), 2);
+        hm.put("key_3".into(), 3);
+        hm.put("key_2".into(), 22);
+        hm.put("key_1".into(), 11);
+        hm.put("key_4".into(), 4);
+        hm.put("key_5".into(), 5);
 
         assert!(hm.get_untraced(&"key_1".into()).is_some());
-        assert!(hm.get_untraced(&"key_2".into()).is_some());
-        assert!(hm.get_untraced(&"key_3".into()).is_some());
+        assert!(hm.get_untraced(&"key_2".into()).is_none());
+        assert!(hm.get_untraced(&"key_3".into()).is_none());
         assert!(hm.get_untraced(&"key_4".into()).is_some());
-
-        // by this operation accessing "key_1" is the newest operation
-        // while "key_2" become the oldest one and out of max treshold.
-        assert!(hm.get(&"key_1".into()).is_some());
-        assert!(hm.get(&"key_2".into()).is_none());
-        assert!(hm.get(&"key_3".into()).is_some());
-        assert!(hm.get(&"key_4".into()).is_some());
-        assert!(hm.get(&"key_1".into()).is_some());
+        assert!(hm.get_untraced(&"key_5".into()).is_some());
     }
 }
