@@ -37,8 +37,8 @@ where
         self.history.push_back(current_op_key.clone());
     }
 
-    fn _ensure_max_history_treshold(&mut self) {
-        while self.history.len() > self.max_size {
+    fn _ensure_max_size_treshold(&mut self) {
+        while self.map.len() > self.max_size {
             if let Some(key_to_remove) = self.history.pop_front() {
                 self.map.remove(&key_to_remove);
             } else {
@@ -50,7 +50,7 @@ where
     pub fn get(&mut self, key: &K) -> Option<&T> {
         if self.map.contains_key(key) {
             self._update_history(key);
-            self._ensure_max_history_treshold();
+            self._ensure_max_size_treshold();
         }
         self.map.get(key)
     }
@@ -68,8 +68,8 @@ where
 
     pub fn put(&mut self, key: K, value: T) {
         self._update_history(&key);
-        self._ensure_max_history_treshold();
         self.map.insert(key, value);
+        self._ensure_max_size_treshold();
     }
 
     pub fn put_untriggered(&mut self, key: K, value: T) {
