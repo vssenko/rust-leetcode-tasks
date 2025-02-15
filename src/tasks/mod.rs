@@ -54,3 +54,6 @@ mod dp_d1;
 
 #[path = "18_dp_multidimensional/mod.rs"]
 mod dp_multidimensional;
+
+#[path = "19_bits/mod.rs"]
+mod bits;

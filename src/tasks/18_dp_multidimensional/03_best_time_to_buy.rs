@@ -9,25 +9,7 @@ use std::collections::HashMap;
 struct Solution;
 impl Solution {
     pub fn max_profit(prices: Vec<i32>, fee: i32) -> i32 {
-        //1 6 4 5
-        //buy 1, sell 6 is 3
-        //buy 1 sell 4 is 1
-        //buy 1 sell 5 is 2
-        //buy 1 sell 6 is 3, + buy 4 sell five is -1 = 2
-        //
-
-        // this represent transations
-        // for grid[i] are all transaction amounts when you buy stock at i and sell at j
-
-        let mut transaction_grid: Vec<Vec<i32>> = vec![vec![0; prices.len()]; prices.len()];
-
-        for (i, buy_price) in prices.iter().enumerate() {
-            for (j, sell_price) in prices.iter().enumerate().skip(i + 1) {
-                transaction_grid[i][j] = prices[j] - prices[i] - fee;
-            }
-        }
-
-        dbg!(transaction_grid);
+        //TODO: Finish one day.
 
         0
     }
