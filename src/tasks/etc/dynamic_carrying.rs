@@ -1,5 +1,5 @@
 use std::fmt;
-use std::ops::Add;
+use std::ops::{Add, Deref};
 
 #[derive(Debug, Clone, Copy)]
 struct Sum<T>(T);
@@ -24,6 +24,14 @@ macro_rules! impl_from_sum {
     };
 }
 impl_from_sum!(i8, i16, i32, i64, i128, isize, u8, u16, u32, u64, u128, usize, f32, f64);
+
+impl<T> Deref for Sum<T> {
+    type Target = T;
+
+    fn deref(&self) -> &Self::Target {
+        &self.0
+    }
+}
 
 impl<T> FnOnce<(T,)> for Sum<T>
 where
@@ -53,26 +61,26 @@ mod test {
     fn dynamic_carrying_1() {
         let sum = Sum::new(5 as usize)(6)(7)(8);
 
-        // dynamic convertion to string
+        // dynamic conversion to string
         assert_eq!(format!("{}", sum), "26");
+
+        // deref way conversion, why not
+        assert_eq!(*sum, 26);
 
         // convert to result in Rust-conventional .into way
         let result: usize = sum.into();
-
         assert_eq!(result, 26);
     }
 
     #[test]
     fn dynamic_carrying_2() {
         let sum = Sum::new(1);
-        let result: i32 = sum.into();
-        assert_eq!(result, 1);
+        assert_eq!(*sum, 1);
     }
 
     #[test]
     fn dynamic_carrying_3() {
         let sum = Sum::new(1.5)(2.2);
-        let result: f64 = sum.into();
-        assert_eq!(result, 3.7);
+        assert_eq!(*sum, 3.7);
     }
 }
