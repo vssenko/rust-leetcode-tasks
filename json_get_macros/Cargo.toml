@@ -1,0 +1,12 @@
+[package]
+name = "json_get_macros"
+version = "0.1.0"
+edition = "2024"
+
+[lib]
+proc-macro = true          # ключевая строчка: делает библиотеку процедурным макросом
+
+[dependencies]
+proc-macro2 = "1"          # удобная обёртка над TokenStream
+quote = "1"                # для генерации кода
+syn = { version = "2", features = ["full"] }  # для парсинга входных токенов

@@ -74,7 +74,7 @@ mod tests {
 
         let result = Solution::asteroid_collision(asteroids);
 
-        assert_eq!(result, []);
+        assert_eq!(result, Vec::<i32>::new());
     }
 
     #[test]

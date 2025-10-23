@@ -2,6 +2,7 @@
 #![feature(fn_traits)]
 #![allow(unused)]
 
+mod json_get_macros;
 mod tasks;
 
 fn main() {

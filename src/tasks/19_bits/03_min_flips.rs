@@ -26,18 +26,17 @@ impl Solution {
         let mut operations_required = 0;
 
         for (position, c_bit) in c_bits.iter().enumerate() {
-            operations_required = operations_required
-                + match (a_bits[position], b_bits[position], c_bit) {
-                    (1, 1, 1) => 0,
-                    (1, 0, 1) => 0,
-                    (0, 1, 1) => 0,
-                    (0, 0, 1) => 1,
-                    (1, 1, 0) => 2,
-                    (1, 0, 0) => 1,
-                    (0, 1, 0) => 1,
-                    (0, 0, 0) => 0,
-                    _ => panic!("impossible"),
-                };
+            operations_required += match (a_bits[position], b_bits[position], c_bit) {
+                (1, 1, 1) => 0,
+                (1, 0, 1) => 0,
+                (0, 1, 1) => 0,
+                (0, 0, 1) => 1,
+                (1, 1, 0) => 2,
+                (1, 0, 0) => 1,
+                (0, 1, 0) => 1,
+                (0, 0, 0) => 0,
+                _ => panic!("impossible"),
+            };
         }
 
         operations_required
