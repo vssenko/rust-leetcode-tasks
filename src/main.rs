@@ -4,6 +4,7 @@
 
 mod json_get_macros;
 mod tasks;
+mod tree_hash;
 
 fn main() {
     println!("Just run the tests (cargo test) to see different tasks exections!");

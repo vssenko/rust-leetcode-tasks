@@ -7,3 +7,8 @@ edition = "2021"
 serde = "1.0.228"
 serde_json = "1.0.145"
 json_get_macros.path = "./json_get_macros"
+rand = { version = "0.9.2", features = ["std", "alloc"] }
+sha2 = "0.10.9"
+hex = "0.4.3"
+rayon = "1.11.0"
+uuid = "1.18.1"
